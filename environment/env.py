@@ -1,6 +1,6 @@
-from load_env import load_environment
-from camera import Camera
-from panda_controller import PandaController
+from environment.load_env import load_environment
+from environment.camera import Camera
+from environment.panda_controller import PandaController
 
 import pybullet as p
 import time
