@@ -55,7 +55,7 @@ def load_environment(use_gui=False):
         "plane_id": plane_id
     }
 
-def load_cube(position=None, size=0.04, color=None):
+def load_cube(position=None, size=0.07, color=None):
     """
     Load a cube object into the PyBullet scene.
 

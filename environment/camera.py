@@ -4,13 +4,13 @@ import numpy as np
 
 class Camera:
     def __init__(self,
-                 width=128,
-                 height=128,
+                 width=224,
+                 height=224,
                  fov=60,
                  near=0.01,
                  far=2.0,
-                 camera_pos=[1.2, 0, 1.0],
-                 target_pos=[0.5, 0, 0.6]):
+                 camera_pos=[1.5, 0.0, 1.5],
+                 target_pos=[0.5, 0.0, 0.6]):
         """
         Simple PyBullet camera wrapper.
 
@@ -74,15 +74,16 @@ class Camera:
             self.proj_matrix,
             renderer=p.ER_BULLET_HARDWARE_OPENGL
         )
-        rgb = np.reshape(img[2], (self.height, self.width, 3))
+        # Fix: reshape to 4 channels (RGBA), then take first 3 (RGB)
+        rgb = np.reshape(img[2], (self.height, self.width, 4))[:, :, :3]
 
         depth_buffer = np.reshape(img[3], (self.height, self.width))
         
-        # Convert depth buffer to real depth (meters)
+        # Convert depth buffer to real depth (meters) - this is correct
         depth = self.far * self.near / (self.far - (self.far - self.near) * depth_buffer)
         
         return rgb, depth
 
 camera = Camera()
 def get_camera_rgb():
-    return camera.get_rgb_image()
+    return camera.get_rgb_image(), camera.get_rgbd()

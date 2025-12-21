@@ -29,7 +29,17 @@ class PandaController:
 
     def reset_arm(self):
         """Reset Panda arm to a standard home pose."""
-        home_positions = [0, -0.5, 0, -2.0, 0, 1.5, 0.8]
+        # home_positions = [0, -0.5, 0, -2.0, 0, 1.5, 0.8]
+        home_positions = [
+                0 + np.random.uniform(-0.25, 0.25),
+            -0.5 + np.random.uniform(-0.25, 0.25),
+                0 + np.random.uniform(-0.25, 0.25),
+            -2.0 + np.random.uniform(-0.25, 0.25),
+                0 + np.random.uniform(-0.25, 0.25),
+                1.5 + np.random.uniform(-0.25, 0.25),
+                0.8 + np.random.uniform(-0.25, 0.25),
+            ]
+
         for j, pos in zip(self.arm_joint_indices, home_positions):
             p.resetJointState(self.robot_id, j, pos)
 
