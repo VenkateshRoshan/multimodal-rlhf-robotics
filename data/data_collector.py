@@ -12,7 +12,6 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from environment.load_env import load_environment, load_cube
 from environment.camera import Camera
 from environment.panda_controller import PandaController
-from environment.camera import Camera
 
 def save_sample(output_dir, idx, rgb, depth, label_dict):
     # Create subdirectories
